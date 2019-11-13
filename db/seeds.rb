@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+
+puts 'Cleaning database...'
+Restaurant.destroy_all
+
+puts 'Creating restaurants...'
+
+10.times do
+  my_places = Restaurant.new(
+    name:    Faker::Books::Lovecraft.tome,
+    address: Faker::Books::Lovecraft.location,
+    category: 'french'
+  )
+  my_places.save!
+end
